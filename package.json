@@ -1,8 +1,18 @@
 {
-  "name": "sgault-webdev-data-table",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
+  "name": "@gsebdev/react-data-table",
+  "version": "1.0.0",
+  "description": "A table component that displays data, with sorting, filtering, and pagination functionalities.",
+  "main": "dist/index.js",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "module": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gsebdev/react-data-table"
+  },
+  "devDependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -11,10 +21,15 @@
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "build": "del dist && babel src/lib --out-dir dist --copy-files --ignore __tests__,spec.js,test.js,__snapshots__",
+    "clean": "rm -rf dist coverage",
+    "clean:fix": "rm -rf node_modules coverage build dist docs package-lock.json",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
