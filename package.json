@@ -4,7 +4,6 @@
   "description": "A table component that displays data, with sorting, filtering, and pagination functionalities.",
   "author": "Sebastien GAULT",
   "main": "dist/index.js",
-  "private": "false",
   "files": [
     "dist",
     "README.md"
