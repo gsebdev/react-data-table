@@ -61,7 +61,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   // Then filter rows function of filter state
   const {
     filteredRows
-  } = (0, _useFilter.default)(sortedRows, filter);
+  } = (0, _useFilter.default)(sortedRows, columns, filter);
   // Then paginate rows to display
   const {
     displayedRows,

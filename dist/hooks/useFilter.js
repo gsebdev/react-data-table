@@ -15,7 +15,7 @@ var _react = require("react");
  * @returns {Object} An object containing the filtered rows.
  */
 
-function useFilter(rows, filter) {
+function useFilter(rows, columns, filter) {
   const [filteredRows, setFilteredRows] = (0, _react.useState)(rows);
   const [rowsToString, setRowsToString] = (0, _react.useState)([]);
 
@@ -25,10 +25,14 @@ function useFilter(rows, filter) {
 
   (0, _react.useEffect)(() => {
     //map rows array to create the array of string
-    const arrayOfString = rows.map(row => Object.values(row).toString().toLowerCase());
+    const arrayOfString = rows.map(row => {
+      return columns.map(col => {
+        return col.selector(row);
+      }).toString().toLowerCase();
+    });
     // set rowsToString with the result
     setRowsToString(arrayOfString);
-  }, [rows]);
+  }, [rows, columns]);
 
   /**
   * Filter the rows based on the filter string.
