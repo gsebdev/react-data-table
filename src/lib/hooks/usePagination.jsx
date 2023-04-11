@@ -29,7 +29,7 @@ export default function usePagination(rows, itemsPerPageSelectOptions) {
             const rowsToDisplay = rows.slice(((page - 1) * itemsNumber), (page * itemsNumber))
             // Generate an array of page numbers based on the number of items and the current itemsPerPage value.
             setPageList(Array.from([...Array(Math.ceil(rows.length / itemsNumber)).keys()], p => p + 1))
-            
+
             // If the rowsToDisplay array is empty and the current page is not the first page, decrement the page state to display the previous page.
             if (rowsToDisplay.length === 0 && page > 1) {
                 setPage(page - 1)

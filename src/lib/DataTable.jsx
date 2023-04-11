@@ -38,7 +38,7 @@ export default function DataTable({ rows, columns, id, pagination = true, pagina
     // Then sort checkedRows if sortColumn is defined
     const { sortedRows, sortColumn, setSortColumn } = useSort(checkedRows, columns)
     // Then filter rows function of filter state
-    const { filteredRows } = useFilter(sortedRows, filter)
+    const { filteredRows } = useFilter(sortedRows, columns, filter)
     // Then paginate rows to display
     const { displayedRows, page, itemsPerPage, pageList, setItemsPerPage, setPage } = usePagination(filteredRows, itemsPerPageSelectOptions)
 

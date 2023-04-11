@@ -8,7 +8,7 @@ import { useEffect, useState } from "react"
  * @returns {Object} An object containing the filtered rows.
  */
 
-export default function useFilter(rows, filter) {
+export default function useFilter(rows, columns, filter) {
     const [filteredRows, setFilteredRows] = useState(rows)
     const [rowsToString, setRowsToString] = useState([])
 
@@ -18,10 +18,14 @@ export default function useFilter(rows, filter) {
 
     useEffect(() => {
         //map rows array to create the array of string
-        const arrayOfString = rows.map(row => Object.values(row).toString().toLowerCase())
+        const arrayOfString = rows.map(row => { 
+            return columns.map(col => {
+                return col.selector(row)
+            }).toString().toLowerCase()
+        })
         // set rowsToString with the result
         setRowsToString(arrayOfString)
-    }, [rows])
+    }, [rows, columns])
 
     /**
     * Filter the rows based on the filter string.
