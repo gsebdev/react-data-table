@@ -12,6 +12,7 @@ var _useCheckIfDataIsString = _interopRequireDefault(require("./hooks/useCheckIf
 var _useFilter = _interopRequireDefault(require("./hooks/useFilter"));
 var _usePagination = _interopRequireDefault(require("./hooks/usePagination"));
 var _useSort = _interopRequireDefault(require("./hooks/useSort"));
+var _jsxRuntime = require("react/jsx-runtime");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 /**
  * A table component that displays data in table, with sorting, filtering, and pagination functionalities.
@@ -24,9 +25,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @param {boolean} [rowSelectable=true] - A boolean indicating whether or not to enable row selection.
  * @param {Object[]} [selectionActions=[]] - An array of objects representing the actions available on selected rows.
  * @returns {JSX.Element} The data table component.
- */
-
-function DataTable(_ref) {
+ */function DataTable(_ref) {
   let {
     rows,
     columns,
@@ -102,127 +101,164 @@ function DataTable(_ref) {
       setChecked([]);
     }
   };
-  return /*#__PURE__*/React.createElement("div", {
-    className: "SG-data-table"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "SG-data-table__header"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "SG-data-table__view-select"
-  }, pagination && /*#__PURE__*/React.createElement("select", {
-    defaultValue: itemsPerPage,
-    onChange: e => {
-      setItemsPerPage(e.target.value);
-      setPage(1);
-    }
-  }, itemsPerPageSelectOptions.map((option, index) => {
-    return /*#__PURE__*/React.createElement("option", {
-      key: option + index + 'view-items-page',
-      value: index
-    }, option);
-  }))), /*#__PURE__*/React.createElement("div", {
-    className: "SG-data-table__filter"
-  }, /*#__PURE__*/React.createElement("span", null, "Search"), /*#__PURE__*/React.createElement("input", {
-    type: "text",
-    value: filter,
-    onChange: e => {
-      setFilter(e.target.value);
-    }
-  }), filter && /*#__PURE__*/React.createElement("div", {
-    className: "SG-data-table__filter__delete",
-    onClick: () => {
-      setFilter('');
-    }
-  }))), /*#__PURE__*/React.createElement("div", {
-    className: "SG-data-table__table-container"
-  }, /*#__PURE__*/React.createElement("table", {
-    id: id,
-    className: "SG-data-table__table"
-  }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", {
-    role: "row"
-  }, rowSelectable && /*#__PURE__*/React.createElement("th", null, /*#__PURE__*/React.createElement("input", {
-    type: "checkbox",
-    checked: filteredRows.length === checked.length && filteredRows.length > 0 ? true : false,
-    onChange: checkAll
-  })), columns.map((column, index) => {
-    return /*#__PURE__*/React.createElement("th", {
-      key: column.name + index + 'thead',
-      className: index === sortColumn.index ? sortColumn.order + ' sorted' : '',
-      tabIndex: 0,
-      "aria-controls": id,
-      "aria-sort": index === sortColumn.index ? sortColumn.order : '',
-      "aria-label": "".concat(column.name, ": activate to sort column ").concat(index === sortColumn.index && sortColumn.order === 'ascending' ? 'descending' : 'ascending'),
-      rowSpan: 1,
-      colSpan: 1,
-      onClick: () => {
-        onSortClick(index);
-      }
-    }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
-      className: "SG-data-table__head-text"
-    }, column.name), /*#__PURE__*/React.createElement("span", {
-      className: 'SG-data-table__sort-icon' + (index === sortColumn.index ? ' ' + sortColumn.order : ' ascending')
-    }, /*#__PURE__*/React.createElement("img", {
-      src: _arrow.default,
-      alt: ""
-    }))));
-  }))), /*#__PURE__*/React.createElement("tbody", null, displayedRows.map((row, y) => {
-    return /*#__PURE__*/React.createElement("tr", {
-      key: row + y,
-      role: "row",
-      className: y % 2 === 0 ? 'even' : 'odd'
-    }, rowSelectable && /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("input", {
-      type: "checkbox",
-      checked: checked.indexOf(row.id) !== -1 ? true : false,
-      onChange: e => {
-        onCheckRow(row.id, e.target.checked);
-      }
-    })), columns.map((column, x) => {
-      return /*#__PURE__*/React.createElement("td", {
-        key: column + x + y
-      }, column.selector(row) ? column.selector(row) : '');
-    }));
-  })))), /*#__PURE__*/React.createElement("div", null, checked.length > 0 && /*#__PURE__*/React.createElement("div", {
-    className: "SG-data-table__actions"
-  }, selectionActions.map((action, index) => {
-    return action.icon ? /*#__PURE__*/React.createElement("span", {
-      key: action + index
-    }, /*#__PURE__*/React.createElement("img", {
-      src: action.icon,
-      alt: action.name,
-      key: index + action,
-      onClick: () => {
-        action.fn(checked);
-        setChecked([]);
-      }
-    })) : /*#__PURE__*/React.createElement("span", {
-      key: index + action,
-      onClick: () => {
-        action.fn(checked);
-        setChecked([]);
-      }
-    }, action.name);
-  }), /*#__PURE__*/React.createElement("span", null, checked.length, " row", checked.length === 1 ? '' : 's', " selected"))), pagination && /*#__PURE__*/React.createElement("div", {
-    className: "SG-data-table__pagination"
-  }, typeof itemsPerPageSelectOptions[itemsPerPage] === 'number' && /*#__PURE__*/React.createElement("span", null, filteredRows.length > 0 ? (page - 1) * itemsPerPageSelectOptions[itemsPerPage] + 1 : 0, " - ", page * itemsPerPageSelectOptions[itemsPerPage] > filteredRows.length ? filteredRows.length : page * itemsPerPageSelectOptions[itemsPerPage], " of ", filteredRows.length), typeof itemsPerPageSelectOptions[itemsPerPage] === 'string' && /*#__PURE__*/React.createElement("span", null, filteredRows.length > 0 ? '1' : '0', " - ", filteredRows.length, " of ", filteredRows.length), /*#__PURE__*/React.createElement("div", null, pageList.length > 0 && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("button", {
-    className: "SG-data-table__pagination__button-navigation".concat(page === 1 ? ' inactive' : ''),
-    onClick: () => {
-      if (page > 1) {
-        setPage(page - 1);
-      }
-    }
-  }, "Previous"), pageList.map((p, index) => {
-    return /*#__PURE__*/React.createElement("button", {
-      onClick: () => {
-        setPage(p);
-      },
-      className: "SG-data-table__pagination__button-page".concat(p === page ? ' active' : ''),
-      key: p + 'pagination' + index
-    }, p);
-  }), /*#__PURE__*/React.createElement("button", {
-    className: "SG-data-table__pagination__button-navigation".concat(page === pageList.length ? ' inactive' : ''),
-    onClick: () => {
-      if (page < pageList.length) {
-        setPage(page + 1);
-      }
-    }
-  }, "Next")))));
+  return /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
+    className: "SG-data-table",
+    children: [/*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
+      className: "SG-data-table__header",
+      children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("div", {
+        className: "SG-data-table__view-select",
+        children: pagination && /*#__PURE__*/(0, _jsxRuntime.jsx)("select", {
+          defaultValue: itemsPerPage,
+          onChange: e => {
+            setItemsPerPage(e.target.value);
+            setPage(1);
+          },
+          children: itemsPerPageSelectOptions.map((option, index) => {
+            return /*#__PURE__*/(0, _jsxRuntime.jsx)("option", {
+              value: index,
+              children: option
+            }, option + index + 'view-items-page');
+          })
+        })
+      }), /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
+        className: "SG-data-table__filter",
+        children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("span", {
+          children: "Search"
+        }), /*#__PURE__*/(0, _jsxRuntime.jsx)("input", {
+          type: "text",
+          value: filter,
+          onChange: e => {
+            setFilter(e.target.value);
+          }
+        }), filter && /*#__PURE__*/(0, _jsxRuntime.jsx)("div", {
+          className: "SG-data-table__filter__delete",
+          onClick: () => {
+            setFilter('');
+          }
+        })]
+      })]
+    }), /*#__PURE__*/(0, _jsxRuntime.jsx)("div", {
+      className: "SG-data-table__table-container",
+      children: /*#__PURE__*/(0, _jsxRuntime.jsxs)("table", {
+        id: id,
+        className: "SG-data-table__table",
+        children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("thead", {
+          children: /*#__PURE__*/(0, _jsxRuntime.jsxs)("tr", {
+            role: "row",
+            children: [rowSelectable && /*#__PURE__*/(0, _jsxRuntime.jsx)("th", {
+              children: /*#__PURE__*/(0, _jsxRuntime.jsx)("input", {
+                type: "checkbox",
+                checked: filteredRows.length === checked.length && filteredRows.length > 0 ? true : false,
+                onChange: checkAll
+              })
+            }), columns.map((column, index) => {
+              return /*#__PURE__*/(0, _jsxRuntime.jsx)("th", {
+                className: index === sortColumn.index ? sortColumn.order + ' sorted' : '',
+                tabIndex: 0,
+                "aria-controls": id,
+                "aria-sort": index === sortColumn.index ? sortColumn.order : '',
+                "aria-label": "".concat(column.name, ": activate to sort column ").concat(index === sortColumn.index && sortColumn.order === 'ascending' ? 'descending' : 'ascending'),
+                rowSpan: 1,
+                colSpan: 1,
+                onClick: () => {
+                  onSortClick(index);
+                },
+                children: /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
+                  children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("span", {
+                    className: "SG-data-table__head-text",
+                    children: column.name
+                  }), /*#__PURE__*/(0, _jsxRuntime.jsx)("span", {
+                    className: 'SG-data-table__sort-icon' + (index === sortColumn.index ? ' ' + sortColumn.order : ' ascending'),
+                    children: /*#__PURE__*/(0, _jsxRuntime.jsx)("img", {
+                      src: _arrow.default,
+                      alt: ""
+                    })
+                  })]
+                })
+              }, column.name + index + 'thead');
+            })]
+          })
+        }), /*#__PURE__*/(0, _jsxRuntime.jsx)("tbody", {
+          children: displayedRows.map((row, y) => {
+            return /*#__PURE__*/(0, _jsxRuntime.jsxs)("tr", {
+              role: "row",
+              className: y % 2 === 0 ? 'even' : 'odd',
+              children: [rowSelectable && /*#__PURE__*/(0, _jsxRuntime.jsx)("td", {
+                children: /*#__PURE__*/(0, _jsxRuntime.jsx)("input", {
+                  type: "checkbox",
+                  checked: checked.indexOf(row.id) !== -1 ? true : false,
+                  onChange: e => {
+                    onCheckRow(row.id, e.target.checked);
+                  }
+                })
+              }), columns.map((column, x) => {
+                return /*#__PURE__*/(0, _jsxRuntime.jsx)("td", {
+                  children: column.selector(row) ? column.selector(row) : ''
+                }, column + x + y);
+              })]
+            }, row + y);
+          })
+        })]
+      })
+    }), /*#__PURE__*/(0, _jsxRuntime.jsx)("div", {
+      children: checked.length > 0 && /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
+        className: "SG-data-table__actions",
+        children: [selectionActions.map((action, index) => {
+          return action.icon ? /*#__PURE__*/(0, _jsxRuntime.jsx)("span", {
+            children: /*#__PURE__*/(0, _jsxRuntime.jsx)("img", {
+              src: action.icon,
+              alt: action.name,
+              onClick: () => {
+                action.fn(checked);
+                setChecked([]);
+              }
+            }, index + action)
+          }, action + index) : /*#__PURE__*/(0, _jsxRuntime.jsx)("span", {
+            onClick: () => {
+              action.fn(checked);
+              setChecked([]);
+            },
+            children: action.name
+          }, index + action);
+        }), /*#__PURE__*/(0, _jsxRuntime.jsxs)("span", {
+          children: [checked.length, " row", checked.length === 1 ? '' : 's', " selected"]
+        })]
+      })
+    }), pagination && /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
+      className: "SG-data-table__pagination",
+      children: [typeof itemsPerPageSelectOptions[itemsPerPage] === 'number' && /*#__PURE__*/(0, _jsxRuntime.jsxs)("span", {
+        children: [filteredRows.length > 0 ? (page - 1) * itemsPerPageSelectOptions[itemsPerPage] + 1 : 0, " - ", page * itemsPerPageSelectOptions[itemsPerPage] > filteredRows.length ? filteredRows.length : page * itemsPerPageSelectOptions[itemsPerPage], " of ", filteredRows.length]
+      }), typeof itemsPerPageSelectOptions[itemsPerPage] === 'string' && /*#__PURE__*/(0, _jsxRuntime.jsxs)("span", {
+        children: [filteredRows.length > 0 ? '1' : '0', " - ", filteredRows.length, " of ", filteredRows.length]
+      }), /*#__PURE__*/(0, _jsxRuntime.jsx)("div", {
+        children: pageList.length > 0 && /*#__PURE__*/(0, _jsxRuntime.jsxs)(_jsxRuntime.Fragment, {
+          children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("button", {
+            className: "SG-data-table__pagination__button-navigation".concat(page === 1 ? ' inactive' : ''),
+            onClick: () => {
+              if (page > 1) {
+                setPage(page - 1);
+              }
+            },
+            children: "Previous"
+          }), pageList.map((p, index) => {
+            return /*#__PURE__*/(0, _jsxRuntime.jsx)("button", {
+              onClick: () => {
+                setPage(p);
+              },
+              className: "SG-data-table__pagination__button-page".concat(p === page ? ' active' : ''),
+              children: p
+            }, p + 'pagination' + index);
+          }), /*#__PURE__*/(0, _jsxRuntime.jsx)("button", {
+            className: "SG-data-table__pagination__button-navigation".concat(page === pageList.length ? ' inactive' : ''),
+            onClick: () => {
+              if (page < pageList.length) {
+                setPage(page + 1);
+              }
+            },
+            children: "Next"
+          })]
+        })
+      })]
+    })]
+  });
 }
