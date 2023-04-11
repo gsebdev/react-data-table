@@ -1,5 +1,4 @@
 import { useMemo, useState } from "react"
-import '../data-table.scss'
 import sortArrow from './icons/arrow.svg'
 import useCheckIfDataIsString from "./hooks/useCheckIfDataIsString"
 import useFilter from "./hooks/useFilter"
