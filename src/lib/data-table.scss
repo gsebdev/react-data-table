@@ -1,6 +1,9 @@
 $table_borders: 1px solid rgb(223, 223, 223);
 
 .SG-data-table {
+    overflow-x: auto;
+    width: 100%;
+    
     &__header {
         display: flex;
         justify-content: space-between;
@@ -135,11 +138,6 @@ $table_borders: 1px solid rgb(223, 223, 223);
             border-radius: 5px;
             border: 2px #d9d9d9 solid;
         }
-    }
-
-    &__table-container {
-        overflow-x: auto;
-        width: 100%;
     }
 
     &__table {
