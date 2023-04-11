@@ -1,2 +1,2 @@
-import DataTable from "./DataTable.jsx"
+import DataTable from "./DataTable"
 export {DataTable}

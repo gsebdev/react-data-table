@@ -7,6 +7,7 @@ exports.default = DataTable;
 require("core-js/modules/web.dom-collections.iterator.js");
 var _react = require("react");
 var _arrow = _interopRequireDefault(require("./icons/arrow.svg"));
+require("./data-table.scss");
 var _useCheckIfDataIsString = _interopRequireDefault(require("./hooks/useCheckIfDataIsString"));
 var _useFilter = _interopRequireDefault(require("./hooks/useFilter"));
 var _usePagination = _interopRequireDefault(require("./hooks/usePagination"));
