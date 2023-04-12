@@ -70,6 +70,13 @@ export default function DataTable({ rows, columns, id, pagination = true, pagina
         }
     }
 
+    //row click handler
+    const handleClickRow = (e) => {
+        e.preventDefault()
+        const checkbox = e.target.closest('tr').querySelector('input[type=checkbox]')
+        checkbox.checked = checkbox.checked ? false : true
+    }
+
     return (
         <div className='SG-data-table'>
             <div className='SG-data-table__header'>
@@ -81,8 +88,8 @@ export default function DataTable({ rows, columns, id, pagination = true, pagina
                     </select>}
                 </div>
                 <div className='SG-data-table__filter'>
-                    <span>Search</span>
-                    <input type="text" value={filter} onChange={(e) => { setFilter(e.target.value) }} />
+                    <label htmlFor="SG-data-table-filter-input">Search</label>
+                    <input id='SG-data-table-filter-input' type="text" value={filter} onChange={(e) => { setFilter(e.target.value) }} />
                     {filter && <div className='SG-data-table__filter__delete' onClick={() => { setFilter('') }}></div>}
                 </div>
             </div>
@@ -96,7 +103,7 @@ export default function DataTable({ rows, columns, id, pagination = true, pagina
                                     key={column.name + index + 'thead'}
                                     className={index === sortColumn.index ? sortColumn.order + ' sorted' : ''}
                                     tabIndex={0} aria-controls={id}
-                                    aria-sort={index === sortColumn.index ? sortColumn.order : ''}
+                                    aria-sort={index === sortColumn.index ? sortColumn.order : 'none'}
                                     aria-label={`${column.name}: activate to sort column ${index === sortColumn.index && sortColumn.order === 'ascending' ? 'descending' : 'ascending'}`}
                                     rowSpan={1}
                                     colSpan={1}
@@ -116,8 +123,8 @@ export default function DataTable({ rows, columns, id, pagination = true, pagina
                         {
                             displayedRows.map((row, y) => {
                                 return (
-                                    <tr key={row + y} role='row' className={y % 2 === 0 ? 'even' : 'odd'}>
-                                        {rowSelectable && <td><input type="checkbox" checked={checked.indexOf(row.id) !== -1 ? true : false} onChange={(e) => { onCheckRow(row.id, e.target.checked) }} /></td>}
+                                    <tr key={row + y} role='row' className={y % 2 === 0 ? 'even' : 'odd'} onClick={handleClickRow}>
+                                        {rowSelectable && <td><input aria-label={'Select or Deselect :' + row.firstname + row.lastName} type="checkbox" checked={checked.indexOf(row.id) !== -1 ? true : false} onChange={(e) => { onCheckRow(row.id, e.target.checked) }} /></td>}
                                         {columns.map((column, x) => {
                                             return (
                                                 <td key={column + x + y}>

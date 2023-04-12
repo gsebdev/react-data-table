@@ -1,5 +1,6 @@
 "use strict";
 
+require("core-js/modules/web.dom-collections.iterator.js");
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -13,7 +14,11 @@ var _useFilter = _interopRequireDefault(require("./hooks/useFilter"));
 var _usePagination = _interopRequireDefault(require("./hooks/usePagination"));
 var _useSort = _interopRequireDefault(require("./hooks/useSort"));
 var _jsxRuntime = require("react/jsx-runtime");
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {
+    default: obj
+  };
+}
 /**
  * A table component that displays data in table, with sorting, filtering, and pagination functionalities.
  * @author Sebastien GAULT <sgault.webdev@gmail.com>
@@ -25,7 +30,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @param {boolean} [rowSelectable=true] - A boolean indicating whether or not to enable row selection.
  * @param {Object[]} [selectionActions=[]] - An array of objects representing the actions available on selected rows.
  * @returns {JSX.Element} The data table component.
- */function DataTable(_ref) {
+ */
+function DataTable(_ref) {
   let {
     rows,
     columns,
@@ -101,13 +107,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
       setChecked([]);
     }
   };
-
-  //row click handler
-  const handleClickRow = e => {
-    e.preventDefault();
-    const checkbox = e.target.closest('tr').querySelector('input[type=checkbox]');
-    checkbox.checked = checkbox.checked ? false : true;
-  };
   return /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
     className: "SG-data-table",
     children: [/*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
@@ -129,11 +128,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
         })
       }), /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
         className: "SG-data-table__filter",
-        children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("label", {
-          htmlFor: "SG-data-table-filter-input",
+        children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("span", {
           children: "Search"
         }), /*#__PURE__*/(0, _jsxRuntime.jsx)("input", {
-          id: "SG-data-table-filter-input",
           type: "text",
           value: filter,
           onChange: e => {
@@ -165,7 +162,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
                 className: index === sortColumn.index ? sortColumn.order + ' sorted' : '',
                 tabIndex: 0,
                 "aria-controls": id,
-                "aria-sort": index === sortColumn.index ? sortColumn.order : 'none',
+                "aria-sort": index === sortColumn.index ? sortColumn.order : '',
                 "aria-label": "".concat(column.name, ": activate to sort column ").concat(index === sortColumn.index && sortColumn.order === 'ascending' ? 'descending' : 'ascending'),
                 rowSpan: 1,
                 colSpan: 1,
@@ -192,10 +189,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
             return /*#__PURE__*/(0, _jsxRuntime.jsxs)("tr", {
               role: "row",
               className: y % 2 === 0 ? 'even' : 'odd',
-              onClick: handleClickRow,
               children: [rowSelectable && /*#__PURE__*/(0, _jsxRuntime.jsx)("td", {
                 children: /*#__PURE__*/(0, _jsxRuntime.jsx)("input", {
-                  "aria-label": 'Select or Deselect :' + row.firstname + row.lastName,
                   type: "checkbox",
                   checked: checked.indexOf(row.id) !== -1 ? true : false,
                   onChange: e => {

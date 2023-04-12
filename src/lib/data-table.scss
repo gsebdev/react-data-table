@@ -2,7 +2,7 @@ $table_borders: 1px solid rgb(223, 223, 223);
 
 .SG-data-table {
     width: 100%;
-    
+
     &__header {
         display: flex;
         justify-content: space-between;
@@ -76,7 +76,7 @@ $table_borders: 1px solid rgb(223, 223, 223);
         padding: 20px 0;
 
         span {
-            color: grey;
+            color: #525252;
             font-size: 0.925em;
             display: flex;
             align-items: center;
@@ -95,7 +95,7 @@ $table_borders: 1px solid rgb(223, 223, 223);
                 }
 
                 &.inactive {
-                    color: rgb(158, 158, 158);
+                    opacity: 0.5;
                     text-decoration: none;
                     cursor: default;
                 }
