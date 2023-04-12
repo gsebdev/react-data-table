@@ -1,6 +1,6 @@
 {
   "name": "@gsebdev/react-data-table",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "A simple data table react component, with sorting, filtering, and pagination functionalities.",
   "author": "Sebastien GAULT",
   "main": "dist/index.js",
