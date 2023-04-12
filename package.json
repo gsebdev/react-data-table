@@ -1,7 +1,7 @@
 {
   "name": "@gsebdev/react-data-table",
   "version": "1.0.8",
-  "description": "A table component that displays data, with sorting, filtering, and pagination functionalities.",
+  "description": "A simple data table react component, with sorting, filtering, and pagination functionalities.",
   "author": "Sebastien GAULT",
   "main": "dist/index.js",
   "files": [
@@ -19,14 +19,28 @@
     "@babel/preset-env": "^7.21.4",
     "@babel/preset-react": "^7.18.6",
     "babel-loader": "^9.1.2",
+    "core-js": "^3.30.0",
+    "css-loader": "^6.7.3",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.5.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "sass": "^1.62.0",
+    "sass-loader": "^13.2.2",
+    "style-loader": "^3.3.2",
+    "svg-inline-loader": "^0.8.2",
+    "svg-url-loader": "^8.0.0",
+    "url-loader": "^4.1.1",
+    "webpack": "^5.78.0",
+    "webpack-cli": "^5.0.1",
+    "webpack-dev-server": "^4.13.2"
   },
   "peerDependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "scripts": {
-    "build": "del dist && set NODE_ENV=production && babel src/lib --out-dir dist --copy-files"
+    "build": "del dist && set NODE_ENV=production && babel src/lib --out-dir dist --copy-files",
+    "dev": "webpack-dev-server -- --env mode=development"
   }
 }

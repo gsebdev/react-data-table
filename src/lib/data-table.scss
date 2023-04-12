@@ -205,6 +205,9 @@ $table_borders: 1px solid rgb(223, 223, 223);
         &.odd {
             background-color: rgb(255, 255, 255);
         }
+        &.selected {
+            background-color: #fbf8f8;
+        }
     }
 
     td {
@@ -213,6 +216,7 @@ $table_borders: 1px solid rgb(223, 223, 223);
         white-space: nowrap;
         text-overflow: ellipsis;
         max-width: 70px;
+        cursor: pointer;
     }
 
     &__sort-icon {
