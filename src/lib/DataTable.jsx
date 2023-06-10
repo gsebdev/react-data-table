@@ -137,7 +137,7 @@ export default function DataTable({ rows, columns, id, pagination = true, pagina
                     <div className='SG-data-table__actions'>
                         {selectionActions.map((action, index) => {
 
-                            return action.icon ? <span key={action + index}><img src={action.icon} alt={action.name} key={index + action} onClick={() => { action.fn(checked); setChecked([]) }} /></span> : <span key={index + action} onClick={() => { action.fn(checked); setChecked([]) }}>{action.name}</span>
+                            return action.icon ? <button key={action + index}><img src={action.icon} alt={action.name} key={index + action} onClick={() => { action.fn(checked); setChecked([]) }} /></button> : <button key={index + action} onClick={() => { action.fn(checked); setChecked([]) }}>{action.name}</button>
                         })}
                         <span>{checked.length} row{checked.length === 1 ? '' : 's'} selected</span>
                     </div>
