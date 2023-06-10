@@ -6,6 +6,8 @@ User can filter rows by filling a text input.
 Pagination and row selection options can be activated.
 
 When selection option is activated, you can provide the component custom actions functions.
+
+[See demo link](https://gsebdev.github.io/react-data-table/)
 ## Installation
 The package can be installed via npm:
 
