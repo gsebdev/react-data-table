@@ -22,6 +22,7 @@
     "core-js": "^3.30.0",
     "css-loader": "^6.7.3",
     "file-loader": "^6.2.0",
+    "gh-pages": "^5.0.0",
     "html-webpack-plugin": "^5.5.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -41,6 +42,9 @@
   },
   "scripts": {
     "build": "del dist && set NODE_ENV=production && babel src/lib --out-dir dist --copy-files",
-    "dev": "webpack-dev-server -- --env mode=development"
+    "dev": "set NODE_ENV=development && webpack-dev-server",
+    "build-demo": "set NODE_ENV=production && npx webpack --config webpack.config.js",
+    "deploy-demo": "gh-pages -d build"
+
   }
 }
